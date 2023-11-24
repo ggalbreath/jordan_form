@@ -1,0 +1,28 @@
+import numpy as np
+from scipy.integrate import odeint
+import matplotlib.pyplot as plt
+
+# Define the matrix A
+A2 = np.array([[2, -1],
+               [1, 0]])
+
+# Define the system of differential equations
+def system_2x2(x, t):
+    return A2.dot(x)
+
+# Set initial conditions
+initial_conditions_2x2 = np.array([1, 0])
+
+# Define the time points for which to solve the system
+t = np.linspace(0, 5, 100)
+
+# Solve the system
+solution_2x2 = odeint(system_2x2, initial_conditions_2x2, t)
+
+# Plot the solutions
+plt.plot(t, solution_2x2[:, 0], label='x1(t)')
+plt.plot(t, solution_2x2[:, 1], label='x2(t)')
+plt.xlabel('Time')
+plt.ylabel('State Variables')
+plt.legend()
+plt.show()
